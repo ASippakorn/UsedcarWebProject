@@ -129,9 +129,9 @@ ADD FOREIGN KEY (carid) REFERENCES car(carid);
 
 -- Sample data insertion for User table
 INSERT INTO User (Username,Password,FName, LName, Email, City, Province, Zipcode, Phonenum, role) VALUES
-('Johnny169','secret','John', 'Doe', 'john.doe@example.com', 'New York', 'NY', '10001', '1234567890', 'Admin'),
-('Morissey542','girlq1','Jane', 'Smith', 'jane.smith@example.com', 'Los Angeles', 'CA', '90001', '0987654321', 'User'),
-('admin','password','aa', 'aa', 'admin@example.com', 'Los Angeles', 'CA', '90001', '0987654321', 'Admin');
+('Johnny169','secret','John', 'Doe', 'john.doe@example.com', 'New York', 'NY', '10001', '1234567890', 'admin'),
+('Morissey542','girlq1','Jane', 'Smith', 'jane.smith@example.com', 'Los Angeles', 'CA', '90001', '0987654321', 'customer'),
+('admin','password','aa', 'aa', 'admin@example.com', 'Los Angeles', 'CA', '90001', '0987654321', 'admin');
 
 
 -- Sample data for Car table
@@ -157,7 +157,7 @@ INSERT INTO Car (Price, Model, Mileage, Brand,  Description, Fuel ) VALUES
 (27000, 'X-Trail', 18000, 'Nissan', 'Crossover with all-terrain capability', 'Hybrid'),
 (35000, 'Model 3', 10000, 'Tesla', 'Advanced electric vehicle', 'Electric'),
 (14000, 'Rio', 35000, 'Kia', 'Compact and budget-friendly', 'Gasoline'),
-(38000, 'Model Y', 8000, 'Tesla', 'High-tech and spacious electric SUV', 'Electric')
+(38000, 'Model Y', 8000, 'Tesla', 'High-tech and spacious electric SUV', 'Electric');
 
 -- Sample data insertion for Insurance table (ensure correct UserID and CarID)
 INSERT INTO Insurance ( ProviderName, Expdate, CoverageDetail, UserID, CarID) VALUES

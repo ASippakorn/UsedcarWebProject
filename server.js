@@ -54,7 +54,18 @@ function ifLoggedin(req,res,next){
     }
     next();
 }
-
+//check role
+const authPage = (permission) =>{
+    return (req,res,next)=>{
+        const userRole= req.session.user
+        console.log(userRole,'Session')
+        if (permission.includes(userRole.role)){
+            next()
+        }else{
+            return res.status(401).json("No permission to access here")
+        }
+    }
+}
 
 //Create Sql connection
 dotenv.config()
@@ -81,7 +92,7 @@ router.get("/",(req,res)=>{
 
 router.get("/team",(req,res)=>{
     console.log("TeamPage")
-    console.log(req.session.user)
+    console.log(req.session.user.role)
     const sql = "SELECT * FROM user";
     dbcon.query(sql,(err,results)=>{
         if(err) throw err;
@@ -144,7 +155,7 @@ router.get("/search",(req,res)=>{
 router.get('/detail/:id',isAuthencicated,(req,res)=>{
     const sql = "SELECT * FROM car WHERE carid =?"
     console.log(`Detail = ${req.params.id}`)
-    console.log(results)
+    
     dbcon.query(sql,[req.params.id],(err,result)=>{
         if (err) throw err;
         res.render('detail', { car: result[0] });
@@ -164,7 +175,7 @@ router.get("/productManagement",isAuthencicated,(req,res)=>{
     })
 })
 //Admin user only
-router.get("/productManagementHistory",isAuthencicated,(req,res)=>{
+router.get("/productManagementHistory",(req,res)=>{
     console.log("Product history")
     const sql = "SELECT * FROM car";
     dbcon.query(sql,(err,results)=>{
@@ -190,12 +201,13 @@ router.get("/UserManagementAdduser",isAuthencicated,(req,res)=>{
 })
 
 
-router.get("/UserManagementOverview",isAuthencicated,(req,res)=>{
+router.get("/UserManagementOverview",authPage(["admin"]),(req,res)=>{
     console.log("User Overview")
     const sql = "SELECT * FROM user";
+
     dbcon.query(sql,(err,results)=>{
         if(err) throw err;
-        
+        console.log(results)
         res.render('UserManagementOverview',{
             user: results
         })
@@ -274,10 +286,10 @@ router.post('/form-register',(req,res)=>{
 router.post('/form-login',(req,res)=>{ 
   const{username,password} =req.body;
 
-  const sql ='SELECT username,password,email FROM user WHERE username = ?' //can't change it * also nav
+  const sql ='SELECT * FROM user WHERE username = ?' //can't change it * also nav
   dbcon.query(sql,[username],(err,result)=>{
     if(err) throw err;
-    console.log(result)
+    
     if(result.length>0){
         const user = result[0];
         if(bcrypt.compareSync(password,user.password)|| password ==user.password){//อันแรกจากregis อันสองปิดจุดdatabase

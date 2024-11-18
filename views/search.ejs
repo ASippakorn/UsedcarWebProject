@@ -6,7 +6,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="/css/detail.css"> -->
     <title>ABC USED CAR</title>
     <style>
-        .model {
+        .modal {
         display: none;
         /* Hidden by default */
         position: fixed;
@@ -20,7 +20,7 @@
         /* Black with opacity */
     }
     
-    .model-content {
+    .modal-content {
         background-color: #fff;
         margin: 10% auto;
         padding: 20px;
@@ -122,6 +122,7 @@
         gap: 5px;
     }
     </style>
+   
 </head>
 
 
@@ -133,19 +134,19 @@
         <%- include('partials/nav') %> <%# navigation %>
         <a href="/productManagementAddproduct">Sell car with us</a><br>
         
-        <form action="/form-search" method="post">
+        <form action="/form-search" method="get">
             <input type="text" id="search" name="productSearch" placeholder="Search Product">
             <button type="submit">Search</button>
 
 
     </nav>
             </form action="/form-advsearch" method = "POST">
-        <button type="open"  id="openmodel">Advanced Filter</button>
-    <!-- <button id="openmodel">Open Car Selection</button> -->
-    <!-- model structure -->
-    <div id="carmodel" class="model">
-        <div class="model-content">
-            <span class="close-btn" id="closemodel">&times;</span>
+        <button type="open"  id="openmodal">Advanced Filter</button>
+    <!-- <button id="openmodal">Open Car Selection</button> -->
+    <!-- modal structure -->
+    <div id="carmodal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closemodal">&times;</span>
             <div class="car-selection">
                 <label class="car-label">
                     <img src="logo/alfa.jpg" class="car-logo">
@@ -337,7 +338,7 @@
         </div>
     </div>
 
-
+    <script src="views/js/script.js"></script>
     <div class="row my-3">
         <% Object.values(car).forEach(function(car){%>
             <div class="col-lg-4 col-md-6 mb-4">
@@ -358,35 +359,6 @@
         <% }) %>
       </div>
       <a href="javascript:history.back()">Back</a>
-    <script >
-        // Get model element and buttons
-        const model = document.getElementById("carmodel");
-        const openmodelBtn = document.getElementById("openmodel");
-        const closemodelBtn = document.getElementById("closemodel");
-    
-        // Open model on button click
-        openmodelBtn.addEventListener("click", () => {
-            model.style.display = "block";
-        });
-    
-        // Close model on close button click
-        closemodelBtn.addEventListener("click", () => {
-            model.style.display = "none";
-        });
-    
-        // Close model if clicked outside the model content
-        window.addEventListener("click", (event) => {
-            if (event.target === model) {
-                model.style.display = "none";
-            }
-        });
-        const findBtn = document.getElementById("find"); 
-        findBtn.addEventListener("click",()=>{
-            
-        })
-
-    </script>
-    
-
+      
 </body>
 </html>
