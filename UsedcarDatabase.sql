@@ -33,6 +33,7 @@ CREATE TABLE Review (
 CREATE TABLE Car (
   carid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   cartype varchar(50),
+  carcertified enum('Yes','No') default 'No' ,
   brand VARCHAR(50) NOT NULL,
   model VARCHAR(50) NOT NULL,
   mileage INT NOT NULL,

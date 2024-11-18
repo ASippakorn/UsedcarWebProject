@@ -13,8 +13,13 @@
   <%- include('partials/nav') %>
   <main class="content">
     <article class="car-title">
-      <h3><%= car.brand + ' ' + car.model %></h3>
-      <h4><%= car.cartype %></h4>
+      <h3><%= car.brand + ' ' + car.model %> 
+        <% if (car.carcertified) { %> <!-- if cerified used car were checked -->
+        <span class="verified-label"><img src = "/pic/verify.png" width ="30"></span>
+         <% } %>
+    </h3>
+        
+      <h4>Cartype: <%= car.cartype %></h4>
       <div class="car">
         <% if(car.image){ %>
             <img src = "/uploads/<%= car.image %>" />
