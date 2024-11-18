@@ -97,7 +97,7 @@ CREATE TABLE Advertisement (
   cost INT NOT NULL,
   expdate DATE NOT NULL,
   adDescription TEXT,
-  sellerID VARCHAR(50) NOT NULL
+  carID int NOT NULL
 
 )AUTO_INCREMENT = 810000;
 -- order foreignkey
@@ -118,7 +118,8 @@ CREATE TABLE Advertisement (
 -- ALTER TABLE CertifiedUsedCar
 -- ADD FOREIGN KEY (CarID) REFERENCES Car(CarID);
 
-
+ALTER TABLE Advertisement
+ADD FOREIGN KEY (carid) REFERENCES car(carid);
 
 -- ALTER TABLE Seller
 -- ADD FOREIGN KEY (CARID) REFERENCES Car(CarID);
@@ -135,7 +136,27 @@ INSERT INTO User (Username,Password,FName, LName, Email, City, Province, Zipcode
 -- Sample data for Car table
 INSERT INTO Car (Price, Model, Mileage, Brand,  Description, Fuel ) VALUES
 (20000, 'Model S', 15000, 'Tesla',  'High performance', 'Electric' ),
-(15000, 'Corolla', 30000, 'Toyota',  'Reliable and efficient', 'Gasoline');
+(15000, 'Corolla', 30000, 'Toyota',  'Reliable and efficient', 'Gasoline'),
+(25000, 'Civic', 22000, 'Honda', 'Sporty and efficient', 'Gasoline'),
+(35000, '3 Series', 18000, 'BMW', 'Luxury and performance', 'Diesel'),
+(12000, 'Elantra', 40000, 'Hyundai', 'Affordable and reliable', 'Gasoline'),
+(28000, 'CX-5', 15000, 'Mazda', 'Versatile and stylish SUV', 'Gasoline'),
+(45000, 'C-Class', 10000, 'Mercedes-Benz', 'Elegant and comfortable', 'Diesel'),
+(18000, 'RAV4', 30000, 'Toyota', 'Capable and spacious SUV', 'Hybrid'),
+(30000, 'Mustang', 12000, 'Ford', 'Iconic sports car', 'Gasoline'),
+(24000, 'Outback', 25000, 'Subaru', 'Adventure-ready and safe', 'Gasoline'),
+(33000, 'XC60', 15000, 'Volvo', 'Scandinavian design and safety', 'Hybrid'),
+(19000, 'Jetta', 35000, 'Volkswagen', 'Compact and efficient', 'Gasoline'),
+(27000, 'A4', 20000, 'Audi', 'Stylish and high-tech', 'Diesel'),
+(16000, 'F-150', 45000, 'Ford', 'Rugged and powerful truck', 'Gasoline'),
+(36000, 'Tucson', 12000, 'Hyundai', 'Modern and spacious SUV', 'Hybrid'),
+(21000, 'Leaf', 20000, 'Nissan', 'Affordable electric car', 'Electric'),
+(50000, 'Wrangler', 8000, 'Jeep', 'Off-road adventure vehicle', 'Gasoline'),
+(22000, 'CR-V', 30000, 'Honda', 'Practical and family-friendly', 'Gasoline'),
+(27000, 'X-Trail', 18000, 'Nissan', 'Crossover with all-terrain capability', 'Hybrid'),
+(35000, 'Model 3', 10000, 'Tesla', 'Advanced electric vehicle', 'Electric'),
+(14000, 'Rio', 35000, 'Kia', 'Compact and budget-friendly', 'Gasoline'),
+(38000, 'Model Y', 8000, 'Tesla', 'High-tech and spacious electric SUV', 'Electric')
 
 -- Sample data insertion for Insurance table (ensure correct UserID and CarID)
 INSERT INTO Insurance ( ProviderName, Expdate, CoverageDetail, UserID, CarID) VALUES
@@ -158,9 +179,9 @@ INSERT INTO Dealership ( DealerName, NumCar, SellerID) VALUES
 ( 'CarWorld', 40, 60001);
 
 -- Sample data for Advertisement table
-INSERT INTO Advertisement ( Title, Cost, Expdate, AdDescription, SellerID) VALUES
-( 'Tesla for Sale', 100, '2024-12-31', 'Great condition',  60000),
-( 'Toyota for Sale', 80, '2024-11-30', 'Low mileage', 60001);
+INSERT INTO Advertisement ( Title, Cost, Expdate, AdDescription,carid) VALUES
+( 'Tesla for Sale', 100, '2024-12-31', 'Great condition',  1),
+( 'Toyota for Sale', 80, '2024-11-30', 'Low mileage', 2);
 
 
 ALTER TABLE User
