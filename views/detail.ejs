@@ -4,29 +4,42 @@
 
     </head>
 <body>
-  <div class="container">
+  <div class="container ">
     <% if (typeof user !== 'undefined') { %>
         <h1>Hello, <%= user.username %></h1>
         <p>Email : <%= user.email %></p>
         <p>Welcome to the home page</p>
     <% } %>
   <%- include('partials/nav') %>
-
-  <div class="row my-3">
-    <% Object.values(car).forEach(function(car){%>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-                <a href="/detail/<%= car.carid%>"><img class="card-img-top" src="/uploads/<%= car.image %>" width = "200" alt ="/pic/noimage.jpg" onerror="this.onerror=null; this.src='/pic/noimage.jpg';" /></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="/detail/<%= car.carid%>"><%= car.brand +' '+car.model %></a>
-                    </h4>
-                    <h5>ราคา <%= car.price%> บาท</h5>
-                    <p class="card-text"><%= car.description %></p>
-                </div>
-            </div>
-        </div>
-    <% }) %>
-  </div>
+  <main class="content">
+    <article class="car-title">
+      <h3><%= car.brand + ' ' + car.model %></h3>
+      <h4><%= car.cartype %></h4>
+      <div class="car">
+        <% if(car.image){ %>
+            <img src = "/uploads/<%= car.image %>" />
+        <% } else{ %>
+          <p> <img src = "/pic/noimage.jpg" width="500"/></p>
+        <% } %>
+      </div>
+    </article> 
+    <!-- If it has certified used car appear verified right of car.brand+model -->
+    <section class="car-info">
+      <div>
+        <p>Mileage :<strong><%= car.mileage %></strong></p>
+        <p>Fueltype :<strong><%= car.fuel %></strong></p>
+        <p>Condition :<strong><%= car.carcondition %></strong></p>
+        <p>Insurance :<strong><%= car.insurance %></strong></p>
+        <p>Price :<strong><%= car.price %> $</strong></p>
+        <p>Description :<strong><%= car.description %></strong></p>
+        
+      </div>
+      <section class="contact-dealer">
+        <textarea class="message-box" placeholder="Message to dealer"></textarea>
+        <button class="cancel-button">Cancel</button>
+        <button class="send-button">Send</button>
+      </section>
+    </section>
+  </main>
 </body>
 </html>

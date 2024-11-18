@@ -91,22 +91,23 @@ router.get("/team",(req,res)=>{
         })
     })
 })
-router.get("/login",ifLoggedin,(req,res)=>{
-    console.log("login")
-    res.render('login',{title :'homepage'})
-})
-
 // router.get("/login",ifLoggedin,(req,res)=>{
 //     console.log("login")
-//     const sql = "SELECT * FROM user";
-//     dbcon.query(sql,(err,results)=>{
-//         if(err) throw err;
-        
-//         res.render('team',{
-//             user: req.session.user
-//         })
-//     })
+//     res.render('login',{title :'homepage'})
 // })
+
+router.get("/login",ifLoggedin,(req,res)=>{
+    console.log("login")
+    const sql = "SELECT * FROM car";
+    dbcon.query(sql,(err,results)=>{
+        if(err) throw err;
+        
+        res.render('login',{
+            car:results,
+            user: req.session.user
+        })
+    })
+})
 
 router.get("/register",ifLoggedin,(req,res)=>{
     console.log("Product history")
@@ -127,22 +128,23 @@ router.get("/search",(req,res)=>{
     })
 })
 
-router.get("/detail",isAuthencicated,(req,res)=>{
-    const sql = "SELECT * FROM car";
+// router.get("/detail",isAuthencicated,(req,res)=>{
+//     const sql = "SELECT * FROM car";
 
-    dbcon.query(sql,(err,results)=>{
-        if(err) throw err;
+//     dbcon.query(sql,(err,results)=>{
+//         if(err) throw err;
 
-        res.render('detail',{
-            title:'Detail',
-            car: results,
-            user: req.session.user 
-        })
-    })
-})
+//         res.render('detail',{
+//             title:'Detail',
+//             car: results,
+//             user: req.session.user 
+//         })
+//     })
+// })
 router.get('/detail/:id',isAuthencicated,(req,res)=>{
     const sql = "SELECT * FROM car WHERE carid =?"
     console.log(`Detail = ${req.params.id}`)
+    console.log(results)
     dbcon.query(sql,[req.params.id],(err,result)=>{
         if (err) throw err;
         res.render('detail', { car: result[0] });

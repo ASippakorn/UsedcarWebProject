@@ -36,6 +36,53 @@
                     <button type="submit">Login</button>
                 </div>
             </form>
+            <!-- <div class="row my-3">
+                <% Object.values(car).forEach(function(car){%>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="/detail/<%= car.carid%>"><img class="card-img-top" src="/uploads/<%= car.image %>" width = "200" alt ="/pic/noimage.jpg" onerror="this.onerror=null; this.src='/pic/noimage.jpg';" /></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="/detail/<%= car.carid%>"><%= car.brand +' '+car.model %></a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+              </div> -->
         </main>
+        <!-- <div class="row my-3">
+            <div id="car-presentation" class="col-12">
+                <% Object.values(car).forEach(function(car, index){ %>
+                    <div class="card h-100 car-item" style="<%= index === 0 ? '' : 'display:none;' %>">
+                        <a href="/detail/<%= car.carid %>">
+                            <img class="card-img-top" src="/uploads/<%= car.image %>" width="200" alt="/pic/noimage.jpg" 
+                                 onerror="this.onerror=null; this.src='/pic/noimage.jpg';" />
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="/detail/<%= car.carid %>"><%= car.brand + ' ' + car.model %></a>
+                            </h4>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let currentIndex = 0;
+                const carItems = document.querySelectorAll('.car-item');
+        
+                function showNextCar() {
+                    carItems[currentIndex].style.display = 'none';
+                    currentIndex = (currentIndex + 1) % carItems.length;
+                    carItems[currentIndex].style.display = 'block';
+                }
+        
+                setInterval(showNextCar, 3000); // Change car every 3 seconds
+            });
+        </script> -->
+        
     </body>
 </html>

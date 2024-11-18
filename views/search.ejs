@@ -136,11 +136,11 @@
         <form action="/form-search" method="post">
             <input type="text" id="search" name="productSearch" placeholder="Search Product">
             <button type="submit">Search</button>
-        </form>
-        <button type="open"  id="openmodel">Advanced Filter</button>
+
 
     </nav>
-
+            </form action="/form-advsearch" method = "POST">
+        <button type="open"  id="openmodel">Advanced Filter</button>
     <!-- <button id="openmodel">Open Car Selection</button> -->
     <!-- model structure -->
     <div id="carmodel" class="model">
@@ -332,7 +332,7 @@
                     </div>
                 </div>
             </div>
-            <form><button type="submit">Find</button>
+            <form><button type="submit" id ="find">Find</button>
             </form>
         </div>
     </div>
@@ -380,6 +380,11 @@
                 model.style.display = "none";
             }
         });
+        const findBtn = document.getElementById("find"); 
+        findBtn.addEventListener("click",()=>{
+            
+        })
+
     </script>
     
 
