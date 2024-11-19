@@ -44,7 +44,7 @@ app.set('view engine','ejs');
 router.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //Static file
-app.use("/public",express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public')))
 // Session configuration
 router.use(session({
     secret: process.env.SESSION_SECRET || 'nodesecret',
@@ -386,21 +386,21 @@ router.post('/edit/:id', upload.single('image'), (req, res) => {//For webserver
     });
 });
 
-router.put('/edit/:id',(req, res) => { // Postman delete img param
-    const { cartype, brand, model, mileage, year, description, fuel, insurance, price } = req.body;
+// router.put('/edit/:id',(req, res) => { // Postman delete img param
+//     const { cartype, brand, model, mileage, year, description, fuel, insurance, price } = req.body;
 
-    const sql = "UPDATE Car SET cartype=?, brand=?, model=?, mileage=?, year=?, description=?, fuel=?, insurance=?, price=? WHERE carid=?";
-    dbcon.query(sql, [cartype, brand, model, mileage, year, description, fuel, insurance, price, req.params.id], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Server error');
-        }
-        if (result.affectedRows === 0) {
-            return res.status(404).send({ error: "Record not found" });
-        }
-        res.send({ message: "Record edited successfully" });
-    });
-});
+//     const sql = "UPDATE Car SET cartype=?, brand=?, model=?, mileage=?, year=?, description=?, fuel=?, insurance=?, price=? WHERE carid=?";
+//     dbcon.query(sql, [cartype, brand, model, mileage, year, description, fuel, insurance, price, req.params.id], (err, result) => {
+//         if (err) {
+//             console.error(err);
+//             return res.status(500).send('Server error');
+//         }
+//         if (result.affectedRows === 0) {
+//             return res.status(404).send({ error: "Record not found" });
+//         }
+//         res.send({ message: "Record edited successfully" });
+//     });
+// });
 
 router.get('/delete/:id', (req, res) => {
     const sql = "DELETE FROM Car WHERE carid = ?";
