@@ -44,7 +44,7 @@ app.set('view engine','ejs');
 router.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //Static file
-app.use(express.static(path.join(__dirname,'public')))
+app.use("/public",express.static(path.join(__dirname,'public')))
 // Session configuration
 router.use(session({
     secret: process.env.SESSION_SECRET || 'nodesecret',

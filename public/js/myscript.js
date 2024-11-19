@@ -1,3 +1,4 @@
+console.log("Script loaded")
 // Get modal element and buttons
 const modal = document.getElementById("carmodal");
 const openmodalBtn = document.getElementById("openmodal");
