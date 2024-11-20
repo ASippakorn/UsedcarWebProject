@@ -343,8 +343,8 @@
     
     <div class="row my-3">
         <% Object.values(car).forEach(function(car){%>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
+            <div class="carobj">
+                <div class="carcard">
                     <a href="/detail/<%= car.carid%>"><img class="card-img-top" src="/uploads/<%= car.image %>" width = "200" alt ="/pic/noimage.jpg" onerror="this.onerror=null; this.src='/pic/noimage.jpg';" /></a>
                     <div class="card-body">
                         <h4 class="card-title">
